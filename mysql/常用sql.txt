@@ -1,0 +1,1 @@
+select count(T.uid) from (select distinct (uid) as uid from login_log_0818) T;

@@ -1,0 +1,72 @@
+多用find 命令 
+
+切换root  su root
+
+service IPtables restart
+
+防火墙
+
+arp -a ; 看看虚拟机的MAC地址是不是 00:50:56 开头的，不是的话，那么这个IP就不是虚拟机。 
+
+端口 netstat -lnp|grep 8991
+进程 ps aux|grep php-fpm
+
+查找 find / -name nginx.conf、
+资源占用 top
+
+提升为全局命令  mv composer.phar /usr/local/bin/composer
+测试脚本性能    time php test.php
+
+======================================================
+ssh登录   /etc/init.d/sshd start  ssh服务设置成自动开启
+CentOS设置开机自动启动某服务
+ 
+这里以启动sshd服务为例：
+ 
+查看sshd是否已经是系统服务：
+ 
+# chkconfig --list |grep sshd
+会显示：
+ sshd    0:off 1:off 2:off 3:off 4:off 5:off 6:off
+   www.2cto.com  
+使用如下命令设置sshd服务自动启动：
+# chkconfig --level 5 sshd on
+=======================================================
+
+
+
+网卡设置==============================================================================
+第一步：激活网卡
+
+系统装好后默认的网卡是eth0，用下面的命令将这块网卡激活。
+# ifconfig eth0 up　　
+
+第二步：设置网卡进入系统时启动
+
+    想要每次开机就可以自动获取IP地址上网，就要设置网络服务在系统启动时也启动。Linux有一点与windows不同的是很多服务默认是停止的，而且你在某次使用该服务时启动这个服务，但是没设置它为默认启动，则下次进入系统这个服务依然是停止的。下面是设置网络服务在系统启动时也启动的方法。
+
+    使用chkconfig命令让网络服务在系统启动级别是2345时默认启动。
+
+# chkconfig --level 2345 network  on
+第三步：修改网卡文件ifcfg-eth0
+
+    修改ifcfg-eth0文件，设置ONBOOT的值为yes，让网络服务启动时使用该网卡。设置BOOTPROTO的值为dhcp，让网卡从DHCP服务器自动获取IP地址。
+
+# vi /etc/sysconfig/network-scripts/ifcfg-eth0
+ONBOOT=yes
+BOOTPROTO=dhcp
+总结：
+
+    通常情况下第三步是最重要的，因为大部分Linux系统默认网络服务是系统启动时也启动的，网卡也是启用的，只要设置好第三步，然后使用下面的命令启动网络服务就OK。
+
+# service network start
+    配置静态IP地址上网与动态IP地址上网同出一辙，修改ifcfg-eth0，然后用命令service network retart重启网络服务。
+
+DEVICE=eth0
+IPADDR=192.168.1.100
+NETMASK=255.255.255.0
+GATEWAY=192.168.1.1
+DNS=8.8.8.8
+BOOTPROTO=static
+ONBOOT=yes
+==================================================================================================================

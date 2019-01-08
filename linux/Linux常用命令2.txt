@@ -1,0 +1,10 @@
+\cp -fr tank/* tank3/  拷贝提示 不提示  价格斜杠
+
+rpm -qa | grep java
+
+yum -y list java*
+yum -y install java-1.6.0-openjdk*
+
+ yum -y remove java java-1.7.0-openjdk.
+
+composer 安装php的一些工具

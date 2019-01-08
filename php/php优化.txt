@@ -1,0 +1,5 @@
+1、尽一切可能减少不必要的IO  mysql更新减少 redis读写减少
+2、经常性地分析php-fmp mysql nginx等的日志
+3、php的日志  info warn error 分类要清晰
+4、接口 只使用 C#中 List Dictionary的结构
+5、写时拷贝的特点

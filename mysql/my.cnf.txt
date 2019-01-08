@@ -1,0 +1,3 @@
+skip-name-resolve
+skip-grant-tables
+  添加这个  跳过域名解析

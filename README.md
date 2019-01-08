@@ -1,2 +1,2 @@
-# php-code-snippet
-code snippet about php redis etc
+# lamp-code-snippet
+note about php mysql linux redis etc
